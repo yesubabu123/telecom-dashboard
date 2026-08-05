@@ -6,12 +6,25 @@ const simSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  provider: {
+    type: String,
+    enum: ["Nexa", "AstraNet", "OrbitTel"],
+    default: "Nexa",
+  },
+  region: {
+    type: String,
+    default: "Central",
+  },
   status: {
     type: String,
     enum: ["active", "inactive", "blocked"],
     default: "active",
   },
   networkSpeed: {
+    type: Number,
+    default: 0,
+  },
+  throughput: {
     type: Number,
     default: 0,
   },
@@ -26,6 +39,11 @@ const simSchema = new mongoose.Schema({
   signalStrength: {
     type: Number,
     default: 0,
+  },
+  alertLevel: {
+    type: String,
+    enum: ["normal", "warning", "critical"],
+    default: "normal",
   },
   createdAt: {
     type: Date,
